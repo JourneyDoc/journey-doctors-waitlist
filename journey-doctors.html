@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Journey Doctors Waitlist</title>
+  <style>
+    :root {
+      --primary: #5D5FEF;
+      --primary-dark: #4B4DDB;
+      --primary-light: #EEEEFF;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-800: #1f2937;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9fafb;
+      color: var(--gray-800);
+      line-height: 1.5;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .container {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+    
+    .card {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      padding: 2rem;
+      margin-top: 1.5rem;
+    }
+    
+    .header {
+      text-align: center;
+      padding: 1.5rem 0;
+    }
+    
+    .logo {
+      color: var(--primary);
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .logo-icon {
+      font-size: 1.8rem;
+      margin-right: 0.5rem;
+    }
+    
+    .subheading {
+      color: #6b7280;
+      font-size: 1rem;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: #374151;
+    }
+    
+    input, select {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      border: 1px solid var(--gray-200);
+      border-radius: 6px;
+      background-color: white;
+      transition: all 0.2s;
+    }
+    
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(93, 95, 239, 0.2);
+    }
+    
+    button {
+      width: 100%;
+      background-color: var(--primary);
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 1rem;
+    }
+    
+    button:hover {
+      background-color: var(--primary-dark);
+    }
+    
+    .success {
+      background-color: #ecfdf5;
+      border: 1px solid #10b981;
+      border-radius: 6px;
+      padding: 1.5rem;
+      text-align: center;
+      color: #065f46;
+      display: none;
+    }
+    
+    .success-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    
+    .success-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    
+    .success-text {
+      color: #047857;
+    }
+    
+    @media (max-width: 640px) {
+      .container {
+        padding: 1rem;
+      }
+      
+      .card {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="logo">
+        <span class="logo-icon">&#x1F3E5;</span>
+        Journey Doctors
+      </div>
+      <p class="subheading">Join our waitlist to be the first to know when we launch</p>
+    </div>
+    
+    <div class="card">
+      <form id="waitlistForm">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="role">I am a...</label>
+          <select id="role" name="role" required>
+            <option value="" disabled selected>Select your role</option>
+            <option value="patient">Patient</option>
+            <option value="doctor">Doctor</option>
+            <option value="nurse">Nurse</option>
+            <option value="other">Other Healthcare Professional</option>
+          </select>
+        </div>
+        
+        <button type="submit">Join Waitlist</button>
+      </form>
+    </div>
+    
+    <div id="success" class="card success">
+      <div class="success-icon">✓</div>
+      <h2 class="success-title">Thank You!</h2>
+      <p class="success-text">You've been added to our waitlist. We'll notify you when we launch.</p>
+    </div>
+  </div>
+  
+  <script>
+    document.getElementById('waitlistForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const iframe = document.createElement('iframe');
+      iframe.name = 'hiddenFrame';
+      iframe.style.display = 'none';
+      document.body.appendChild(iframe);
+      
+      const form = document.getElementById('waitlistForm');
+      form.target = 'hiddenFrame';
+      form.action = 'https://script.google.com/macros/s/AKfycbyQghxD8nCH92-zVXrfFHu-B8707YFGoEZA2FTX5x9iMYus6y4nd9_WyXHyDomG_OxzBQ/exec';
+      form.method = 'POST';
+      
+      form.submit();
+      document.querySelector('.card').style.display = 'none';
+      document.getElementById('success').style.display = 'block';
+    });
+  </script>
+</body>
+</html>
